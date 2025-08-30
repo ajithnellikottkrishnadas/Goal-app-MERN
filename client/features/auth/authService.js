@@ -1,7 +1,7 @@
 import axios from "axios";
-import { response } from "express";
 
-const API_URL="/api/users/";
+
+const API_URL="http://localhost:8000/api/users/";
 
 
 //reg user
@@ -11,12 +11,19 @@ const register= async (userData)=>{
     if(response.data){
         localStorage.setItem("user",JSON.stringify(response.data))
     }
+    return response.data;
 }
 
-return response.data;
+//logout
+
+const logout=()=>{
+    localStorage.removeItem("user")
+    return null;
+}
 
 const authService={
-    register
+    register,
+    logout
 }
 
 export default authService;

@@ -44,7 +44,7 @@ const Register = () => {
     }
     
     const { email, name, password, password2 } = formData;
-    const { User, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
@@ -53,14 +53,14 @@ const Register = () => {
         if (isError) {
             toast.error(message);
         }
-        if (isSuccess) {
+        if (isSuccess || user) {
             console.log("success registered");
             
             navigate("/");
         }
         dispatch(reset());
         
-    }, [User, isLoading, isError, isSuccess, message, navigate, dispatch])
+    }, [user, isLoading, isError, isSuccess, message, navigate, dispatch])
     
     if (isLoading) {
         return <Spinner />
