@@ -17,7 +17,7 @@ const GoalForms = () => {
     }
   return (
     <div>
-      <section classname=' form'>
+      <section className='form'>
         <form onSubmit={onSubmit}>
             <div className="form-group">
                 <label htmlFor="text">Goal</label>
