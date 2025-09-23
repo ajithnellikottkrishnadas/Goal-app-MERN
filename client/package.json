@@ -17,11 +17,15 @@
     "web-vitals": "^5.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start": "node server/server.js",
+  "server": "nodemon server/server.js",
+  "client": "npm start --prefix client",
+  "client-install": "npm install --prefix client",
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "build": "npm run build --prefix client",
+  "render-postbuild": "npm install --prefix client && npm run build --prefix client"
+}
+,
   "eslintConfig": {
     "extends": [
       "react-app",
