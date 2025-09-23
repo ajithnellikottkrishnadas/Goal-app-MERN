@@ -6,12 +6,11 @@ const user = JSON.parse(localStorage.getItem("user"));
 const initialState = {
     user: user ? user : null,
     isError: false,
-    isSucces: false,
+    isSuccess: false,
     isLoading: false,
     message: "",
 };
 
-// register user
 export const register = createAsyncThunk("auth/register", async (user, thunkAPI) => {
     try {
         return await authService.register(user);
@@ -36,7 +35,6 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
     }
 });
 
-// logout
 export const logout = createAsyncThunk("auth/logout", async () => {
     authService.logout();
     return {};
@@ -49,7 +47,7 @@ export const authSlice = createSlice({
         reset: (state) => {
             state.isLoading = false;
             state.isError = false;
-            state.isSucces = false;
+            state.isSuccess = false;
             state.message = "";
         },
     },
@@ -60,7 +58,7 @@ export const authSlice = createSlice({
             })
             .addCase(register.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isSucces = true;
+                state.isSuccess = true;
                 state.user = action.payload;
             })
             .addCase(register.rejected, (state, action) => {
@@ -74,7 +72,7 @@ export const authSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isSucces = true;
+                state.isSuccess = true;
                 state.user = action.payload;
             })
             .addCase(login.rejected, (state, action) => {

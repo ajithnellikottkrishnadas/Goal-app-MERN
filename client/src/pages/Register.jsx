@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
-import Spinner from "../components/Spinner";
 import { register,reset } from "../features/auth/authSlice";
 
 
@@ -16,7 +15,6 @@ const Register = () => {
         password2: "",
         name: ""
     })
-
     const onchange = (e) => {
 
         setFormData((prevValue) => ({
@@ -25,7 +23,6 @@ const Register = () => {
         }))
 
     }
-
     const onSubmit = (e) => {
         e.preventDefault();
         if (password !== password2) {
@@ -38,7 +35,6 @@ const Register = () => {
                 password
             }
             console.log(userData);
-            
             dispatch(register(userData))
         }
     }
@@ -55,16 +51,12 @@ const Register = () => {
         }
         if (isSuccess || user) {
             console.log("success registered");
-            
             navigate("/");
         }
         dispatch(reset());
         
-    }, [user, isLoading, isError, isSuccess, message, navigate, dispatch])
+    }, [user, isLoading,isError,isSuccess,message,navigate, dispatch])
     
-    if (isLoading) {
-        return <Spinner />
-    }
 
     return (
         <>
